@@ -1,0 +1,350 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="bansach.Site" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="sachweb.vn - Nhà sách trực tuyến cung cấp sách kiến thức, văn học, giáo trình chất lượng.">
+    <meta name="keywords" content="sach, sách online, nhà sách, sách giáo trình, văn học, sách không dấu">
+    <meta name="robots" content="index, follow">
+    <link href="bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            background: #f0eee8;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+        a { color: #1b4332; text-decoration: none; }
+        a:hover { color: #2d6a4f; text-decoration: underline; }
+        img { max-width: 100%; height: auto; }
+
+        .top-bar { background: #0f2818; color: #fff; font-size: 13px; padding: 7px 0; }
+        .top-bar a { color: #fff; }
+        .top-bar a:hover { color: #60a5fa; text-decoration: none; }
+
+        .site-header { background: #fff; border-bottom: 2px solid #1b4332; padding: 14px 0; }
+        .site-header .logo { max-height: 56px; }
+
+        .search-wrap { display: flex; align-items: center; gap: 0; flex: 1; }
+        .search-wrap .form-control {
+            height: 42px; border: 2px solid #d4d4d4; border-right: none;
+            font-size: 14px; border-radius: 0 !important; flex: 1;
+        }
+        .search-wrap .form-control:focus { border-color: #1b4332; box-shadow: none !important; }
+        .search-wrap .btn {
+            height: 42px; background: #1b4332; color: #fff; border: none;
+            padding: 0 22px; font-weight: 600; font-size: 14px; border-radius: 0 !important;
+        }
+        .search-wrap .btn:hover { background: #2d6a4f; }
+        .search-gif { height: 50px; }
+
+        .sidebar { background: #fafaf5; border: 1px solid #d4d4d4; padding: 20px; }
+        .sidebar-title {
+            font-size: 14px; font-weight: 700; color: #1b4332;
+            text-transform: uppercase; letter-spacing: .8px;
+            padding-bottom: 10px; border-bottom: 2px solid #1b4332;
+            margin-bottom: 10px; display: block;
+        }
+        .sidebar-link { display: block; padding: 8px 0; color: #333; border-bottom: 1px solid #e8e8e0; font-size: 14px; }
+        .sidebar-link:hover { color: #1b4332; text-decoration: none; font-weight: 600; }
+        .sidebar-book-item { padding: 10px 0; border-bottom: 1px solid #e8e8e0; }
+        .sidebar-book-item:last-child { border-bottom: none; }
+        .sidebar-book-img { width: 50px; height: 65px; object-fit: cover; float: left; margin-right: 10px; border: 1px solid #d4d4d4; }
+        .sidebar-book-title { display: block; font-weight: 600; font-size: 13px; color: #1a1a1a; line-height: 1.3; margin-bottom: 3px; }
+        .sidebar-book-title:hover { color: #1b4332; text-decoration: none; }
+        .sidebar-book-price { font-size: 13px; font-weight: 700; color: #dc3545; }
+
+        .main-wrap { background: #fff; border: 1px solid #d4d4d4; padding: 28px; min-height: 500px; }
+
+        .site-footer { background: #1b4332; color: #ccc; padding: 32px 0; }
+        .site-footer .footer-heading {
+            color: #fff; font-weight: 700; font-size: 14px; margin-bottom: 12px;
+            text-transform: uppercase; letter-spacing: 1px; display: block;
+        }
+        .site-footer .footer-text, .site-footer li { font-size: 13px; line-height: 1.8; }
+        .site-footer ul { list-style: none; padding: 0; margin: 0; }
+        .site-footer a { color: #ccc; }
+        .site-footer a:hover { color: #fff; }
+
+        .copy-bar { background: #0f2818; color: #888; text-align: center; padding: 14px 0; font-size: 13px; }
+
+        .page-title {
+            font-size: 20px; font-weight: 700; color: #1b4332;
+            text-transform: uppercase; letter-spacing: .8px;
+            padding-bottom: 12px; border-bottom: 2px solid #1b4332;
+            margin-bottom: 24px; display: block;
+        }
+        .section-title {
+            font-size: 16px; font-weight: 700; color: #1a1a1a;
+            border-bottom: 2px solid #1b4332;
+            padding-bottom: 8px; margin-bottom: 14px; display: block;
+        }
+
+        .book-grid-table { width: 100%; border-collapse: separate; border-spacing: 18px 0; margin: 0 -18px; }
+        .book-grid-table td { width: 25%; border: 1px solid #d4d4d4; padding: 16px; text-align: center; background: #fff; vertical-align: top; }
+        .book-grid-table td:hover { box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+        .book-grid-table td img { width: 140px; height: 190px; object-fit: cover; margin-bottom: 10px; display: block; margin: 0 auto 10px; }
+        .book-grid-table td a.book-title { display: block; font-weight: 600; color: #1a1a1a; font-size: 14px; line-height: 1.3; margin-bottom: 8px; min-height: 36px; }
+        .book-grid-table td a.book-title:hover { color: #1b4332; text-decoration: none; }
+        .book-grid-table td .book-price { color: #dc3545; font-weight: 700; font-size: 15px; }
+
+        .form-card { max-width: 460px; margin: 0 auto; border: 1px solid #d4d4d4; padding: 32px; background: #fff; }
+        .form-card-wide { max-width: 900px; }
+        .form-title { text-align: center; font-size: 20px; font-weight: 700; color: #1b4332; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 24px; display: block; }
+        .form-label { font-size: 14px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px; display: block; }
+        .form-control-custom { width: 100%; height: 42px; border: 1px solid #d4d4d4; padding: 0 14px; font-size: 14px; box-sizing: border-box; }
+        .form-control-custom:focus { outline: none; border-color: #1b4332; }
+        textarea.form-control-custom { height: auto; padding: 10px 14px; }
+        select.form-control-custom { height: 42px; appearance: auto; }
+
+        .btn-primary { background: #1b4332; color: #fff; border: none; padding: 10px 30px; font-size: 15px; font-weight: 700; cursor: pointer; letter-spacing: .5px; display: inline-block; }
+        .btn-primary:hover { background: #2d6a4f; }
+        .btn-accent { background: #2563eb; color: #fff; border: none; padding: 10px 30px; font-size: 15px; font-weight: 700; cursor: pointer; letter-spacing: .5px; display: inline-block; }
+        .btn-accent:hover { background: #1d4ed8; }
+        .form-link { color: #1b4332; font-weight: 600; font-size: 14px; }
+        .form-link:hover { text-decoration: underline; }
+        .form-error { color: #dc3545; font-size: 13px; font-weight: 600; display: block; margin-top: 4px; }
+        .form-success { color: #198754; font-size: 13px; font-weight: 600; display: block; margin-top: 4px; }
+
+        .detail-img { width: 100%; border: 1px solid #d4d4d4; display: block; }
+        .detail-name { font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; line-height: 1.2; display: block; }
+        .detail-meta { font-size: 14px; color: #6b7280; margin-bottom: 4px; display: block; }
+        .detail-price { color: #dc3545; font-size: 26px; font-weight: 700; margin: 14px 0; display: block; }
+        .detail-desc { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 20px; display: block; }
+
+        .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        .data-table th { background: #1b4332; color: #fff; padding: 10px 8px; text-align: left; font-weight: 600; }
+        .data-table td { padding: 8px; border-bottom: 1px solid #e8e8e0; }
+        .data-table a.action { color: #1b4332; font-weight: 600; margin: 0 4px; }
+        .data-table a.action:hover { text-decoration: underline; }
+
+        .nav-cards { display: flex; justify-content: center; align-items: center; gap: 40px; min-height: 350px; padding: 40px 15px; flex-wrap: wrap; }
+        .nav-card { width: 260px; padding: 40px 30px; text-align: center; border: 2px solid #d4d4d4; display: block; transition: .2s; }
+        .nav-card:hover { border-color: #1b4332; box-shadow: 0 2px 16px rgba(27,67,50,.1); text-decoration: none; }
+        .nav-card .label { font-size: 18px; font-weight: 700; color: #1a1a1a; display: block; }
+        .nav-card .desc { font-size: 13px; color: #6b7280; margin-top: 6px; display: block; }
+
+        .thanks-wrap { display: flex; justify-content: center; align-items: center; min-height: 350px; padding: 40px 15px; }
+        .thanks-box { text-align: center; max-width: 500px; width: 100%; }
+        .thanks-box .thanks-heading { color: #1b4332; font-size: 24px; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; letter-spacing: .8px; display: block; }
+        .thanks-box .note { color: #6b7280; font-size: 14px; margin-bottom: 4px; display: block; }
+        .thanks-box .order-info { background: #fafaf5; border: 1px solid #d4d4d4; padding: 20px; margin: 20px 0; text-align: left; }
+        .thanks-box .order-info span { display: block; font-size: 14px; color: #555; padding: 4px 0; }
+        .thanks-box .order-info strong { color: #1a1a1a; }
+        .thanks-box .order-info .highlight { color: #dc3545; font-weight: 700; }
+
+        .filter-row { display: flex; align-items: center; gap: 12px; justify-content: flex-end; margin-bottom: 20px; }
+        .filter-row label { font-weight: 600; font-size: 14px; color: #333; margin: 0; }
+        .filter-row select { height: 36px; padding: 0 10px; border: 1px solid #d4d4d4; font-size: 13px; min-width: 180px; }
+        .section-mb { margin-bottom: 30px; }
+        .captcha-box { display: inline-block; background: #f0eee8; padding: 8px 18px; font-size: 18px; font-weight: 700; color: #1b4332; margin-bottom: 6px; letter-spacing: 2px; }
+
+        .float-widgets { position: fixed; bottom: 24px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+        .float-btn { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; text-decoration: none; box-shadow: 0 4px 12px rgba(0,0,0,.2); transition: .25s; }
+        .float-btn:hover { color: #fff; text-decoration: none; transform: scale(1.1); }
+        .float-phone { background: #2563eb; }
+        .float-phone:hover { background: #1d4ed8; }
+        .float-message { background: #1b4332; }
+        .float-message:hover { background: #2d6a4f; }
+        .float-top { background: #0f2818; }
+        .float-top:hover { background: #1b4332; }
+
+        @keyframes float-ring { 0%,100% { transform: rotate(0); } 10% { transform: rotate(8deg); } 20% { transform: rotate(-6deg); } 30% { transform: rotate(4deg); } 40% { transform: rotate(-2deg); } 50% { transform: rotate(0); } }
+        .float-phone { animation: float-ring 2s ease-in-out infinite; }
+        .float-message { animation: float-ring 2s ease-in-out .4s infinite; }
+        .float-top { animation: float-ring 2s ease-in-out .8s infinite; }
+        .float-btn:hover { animation: none; }
+
+        @media (max-width: 767.98px) {
+            .float-widgets { bottom: 16px; right: 12px; gap: 10px; }
+            .float-btn { width: 42px; height: 42px; font-size: 17px; }
+        }
+
+        @media (max-width: 991.98px) {
+            .main-wrap { padding: 20px; }
+            .book-grid-table td { width: 50%; }
+            .book-grid-table td img { width: 120px; height: 160px; }
+        }
+        @media (max-width: 767.98px) {
+            .top-bar .row > div { text-align: center !important; padding: 2px 0; }
+            .top-bar .row > div:last-child { margin-top: 2px; }
+            .search-wrap { margin-top: 10px; }
+            .search-gif { display: none !important; }
+            .book-grid-table { border-spacing: 8px 0; margin: 0 -8px; }
+            .book-grid-table td { width: 100%; display: block; margin-bottom: 14px; }
+            .book-grid-table td img { width: 130px; height: 180px; }
+            .form-card { padding: 20px; }
+            .nav-cards { gap: 20px; }
+            .nav-card { width: 100%; max-width: 300px; }
+            .detail-img { max-width: 240px; height: 320px; }
+            .site-footer .col-lg-3 { text-align: center; margin-bottom: 20px; }
+            .site-footer .col-lg-3:first-child img { margin: 0 auto; }
+            .sidebar { padding: 12px; }
+            .sidebar .sidebar-section { display: none; }
+            .sidebar-title { font-size: 13px; margin-bottom: 6px; padding-bottom: 6px; }
+            .sidebar-link { font-size: 13px; padding: 6px 0; display: inline-block; border: none; margin-right: 12px; }
+            .sidebar-menu ul { display: flex; flex-wrap: wrap; }
+            .sidebar-menu li { display: inline-block; }
+            .main-wrap { padding: 16px; min-height: auto; }
+            .page-title { font-size: 17px; margin-bottom: 16px; }
+            .site-header .logo { max-height: 40px; }
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="top-bar">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-8 text-center text-md-start">
+                        <asp:Label runat="server" CssClass="me-3" ForeColor="White">Điện thoại: 0965530439</asp:Label>
+                        <asp:Label ID="LabelTop1" runat="server" CssClass="me-3" ForeColor="White">info@sachweb.vn</asp:Label>
+                        <asp:Label ID="LabelTop2" runat="server" ForeColor="White">Địa chỉ: 123 Nguyễn Đáng, Vĩnh Long</asp:Label>
+                    </div>
+                    <div class="col-md-4 text-center text-md-end">
+                        <asp:HyperLink runat="server" ID="HyperLink3" NavigateUrl="~/Dangnhap.aspx" ForeColor="White">Đăng nhập</asp:HyperLink>
+                        <asp:HyperLink runat="server" ID="HyperLink4" NavigateUrl="~/Dangky.aspx" CssClass="ms-3" ForeColor="White">Đăng ký</asp:HyperLink>
+                        <asp:HyperLink runat="server" ID="hlUser" Visible="false" ForeColor="White" CssClass="ms-3"><i class="fas fa-user-circle"></i> <asp:Label ID="lblGreeting" runat="server" /></asp:HyperLink>
+                        <asp:LinkButton runat="server" ID="btnDangXuat" CssClass="ms-3" ForeColor="White" OnClick="btnDangXuat_Click" Visible="false">Đăng xuất</asp:LinkButton>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="site-header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-3 text-center text-md-start mb-2 mb-md-0">
+                        <asp:HyperLink NavigateUrl="~/trangchu.aspx" runat="server">
+                            <asp:Image ID="Image1" runat="server" ImageUrl="~/image/master/logo.png" CssClass="logo" />
+                        </asp:HyperLink>
+                    </div>
+                    <div class="col-md-9 d-flex align-items-center">
+                        <div class="search-wrap flex-grow-1">
+                            <asp:TextBox ID="txtmastertimkiem" runat="server" CssClass="form-control" Style="max-width:380px;" placeholder="Tìm kiếm sách..." onkeypress="if(event.keyCode==13){document.getElementById('<%= btnmastertimkiem.ClientID %>').click();return false;}"></asp:TextBox>
+                            <asp:Button ID="btnmastertimkiem" runat="server" Text="Tìm kiếm" CssClass="btn" OnClick="btnmastertimkiem_Click" />
+                        </div>
+                        <asp:Image ID="ImageGif" runat="server" ImageUrl="~/image/img/anhdong.gif" CssClass="search-gif" />
+                        <a href="giohang.aspx" style="position:relative;margin-left:14px;color:#1b4332;font-size:22px;" title="Giỏ hàng">
+                            <i class="fas fa-shopping-cart"></i>
+                            <asp:Label ID="lblCartCount" runat="server" Style="position:absolute;top:-8px;right:-10px;background:#dc3545;color:#fff;font-size:11px;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-4">
+            <div class="row g-4">
+                <div ID="sidebarCol" runat="server" class="col-12 col-lg-3 mb-3 mb-lg-0">
+                    <div class="sidebar">
+                        <asp:Label CssClass="sidebar-title" Text="Danh mục" runat="server" />
+                        <asp:HyperLink NavigateUrl="~/trangchu.aspx" CssClass="sidebar-link fw-bold" Text="Trang chủ" runat="server" />
+                        <asp:Menu ID="Menu1" runat="server" RenderingMode="List" StaticDisplayLevels="1" CssClass="sidebar-menu" IncludeStyleBlock="false">
+                            <StaticMenuItemStyle CssClass="sidebar-link" />
+                            <Items>
+                                <asp:MenuItem Text="Khoa học Công nghệ" Value="KHCN" NavigateUrl="Theloai.aspx?MATL=KHCN"></asp:MenuItem>
+                                <asp:MenuItem Text="Tâm lý, Tình cảm" Value="TLTC" NavigateUrl="Theloai.aspx?MATL=TLTC"></asp:MenuItem>
+                                <asp:MenuItem Text="Văn học viễn tưởng" Value="VHVT" NavigateUrl="Theloai.aspx?MATL=VHVT"></asp:MenuItem>
+                                <asp:MenuItem Text="Văn hoá, Xã hội" Value="VHXH" NavigateUrl="Theloai.aspx?MATL=VHXH"></asp:MenuItem>
+                            </Items>
+                        </asp:Menu>
+
+                        <div class="sidebar-section" style="margin-top:24px;">
+                            <asp:Label CssClass="sidebar-title" Text="Sách nổi bật" runat="server" />
+                            <asp:DataList ID="dtlSachNoiBat" runat="server">
+                                <ItemTemplate>
+                                    <div class="sidebar-book-item">
+                                        <asp:Image ID="imgSach" runat="server" CssClass="sidebar-book-img" ImageUrl='<%# "image/upload/" + Eval("HINHANH") %>' AlternateText='<%# Eval("TENSACH") %>' />
+                                        <asp:HyperLink ID="hlSach" runat="server" CssClass="sidebar-book-title" Text='<%# Eval("TENSACH") %>' NavigateUrl='<%# "chitiet.aspx?MASACH=" + Eval("MASACH") %>'></asp:HyperLink>
+                                        <div class="sidebar-book-price"><asp:Label ID="lbGia" runat="server" Text='<%# string.Format("{0:N0} đ", Eval("DONGIA")) %>'></asp:Label></div>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:DataList>
+                        </div>
+                    </div>
+                </div>
+                <div ID="mainCol" runat="server" class="col-12 col-lg-9">
+                    <div class="main-wrap">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="site-footer">
+            <div class="container">
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6">
+                        <asp:Label CssClass="footer-heading" Text="Về chúng tôi" runat="server" />
+                        <asp:Image ImageUrl="~/image/master/logo.png" Style="max-width:140px; margin-bottom:10px; display:block;" runat="server" />
+                        <asp:Label CssClass="footer-text" Style="display:block;" Text="Cung cấp sách kiến thức, văn học và giáo trình chất lượng." runat="server" />
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <asp:Label CssClass="footer-heading" Text="Danh mục sách" runat="server" />
+                        <ul>
+                            <li><a href="Theloai.aspx?MATL=KHCN">Khoa học Công nghệ</a></li>
+                            <li><a href="Theloai.aspx?MATL=TLTC">Tâm lý, Tình cảm</a></li>
+                            <li><a href="Theloai.aspx?MATL=VHVT">Văn học viễn tưởng</a></li>
+                            <li><a href="Theloai.aspx?MATL=VHXH">Văn hoá, Xã hội</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <asp:Label CssClass="footer-heading" Text="Hỗ trợ" runat="server" />
+                        <ul>
+                            <li><a href="chinhsachdoitra.aspx">Chính sách đổi trả</a></li>
+                            <li><a href="huongdan.aspx">Hướng dẫn đặt hàng</a></li>
+                            <li><a href="tracuu.aspx">Tra cứu đơn hàng</a></li>
+                            <li><a href="Quanlybansach.aspx">Quản lý</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <asp:Label CssClass="footer-heading" Text="Liên hệ" runat="server" />
+                        <asp:Label CssClass="footer-text" Style="display:block;" Text="Địa chỉ: 123 Nguyễn Đáng, Vĩnh Long" runat="server" />
+                        <asp:Label CssClass="footer-text" Style="display:block;" Text="Email: info@sachweb.vn" runat="server" />
+                        <asp:Label CssClass="footer-text" Style="display:block;" Text="Điện thoại: 0965 530 439" runat="server" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copy-bar">
+            <div class="container">© 2026 <asp:Label Font-Bold="true" ForeColor="White" Text="sachweb.vn" runat="server" />. Phát triển bởi Trần Võ Hoàng Nam.</div>
+        </div>
+    </form>
+
+    <div class="float-widgets">
+        <a href="tel:0965530439" class="float-btn float-phone" title="Gọi điện">
+            <i class="fas fa-phone"></i>
+        </a>
+        <a href="https://zalo.me/0965530439" class="float-btn float-message" title="Nhắn tin">
+            <i class="fas fa-comment"></i>
+        </a>
+        <a href="javascript:void(0)" class="float-btn float-top" id="scrollTopBtn" title="Lên đầu trang" style="display:none;">
+            <i class="fas fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <script src="bootstrap/bootstrap.bundle.min.js"></script>
+    <script>
+        window.addEventListener('scroll', function () {
+            var btn = document.getElementById('scrollTopBtn');
+            if (window.scrollY > 300) {
+                btn.style.display = 'flex';
+            } else {
+                btn.style.display = 'none';
+            }
+        });
+        document.getElementById('scrollTopBtn').addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>

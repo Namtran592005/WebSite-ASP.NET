@@ -1,0 +1,37 @@
+﻿<%@ Page Title="Quên mật khẩu - sachweb.vn" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Quenmatkhau.aspx.cs" Inherits="bansach.Quenmatkhau" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div class="form-card">
+        <asp:Label CssClass="form-title" Text="Quên mật khẩu" runat="server" />
+        <div class="mb-3">
+            <asp:Label CssClass="form-label" Text="Tên tài khoản" AssociatedControlID="txtuser" runat="server" />
+            <asp:TextBox ID="txtuser" runat="server" CssClass="form-control-custom" placeholder="Nhập tên tài khoản"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtuser" CssClass="form-error" Display="Dynamic">Vui lòng nhập tên tài khoản!</asp:RequiredFieldValidator>
+        </div>
+        <div class="mb-3">
+            <asp:Label CssClass="form-label" Text="Mật khẩu mới" AssociatedControlID="txtpass" runat="server" />
+            <asp:TextBox ID="txtpass" runat="server" CssClass="form-control-custom" TextMode="Password" placeholder="Nhập mật khẩu mới"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtpass" CssClass="form-error" Display="Dynamic">Vui lòng nhập mật khẩu mới!</asp:RequiredFieldValidator>
+        </div>
+        <div class="mb-3">
+            <asp:Label CssClass="form-label" Text="Nhập lại mật khẩu" AssociatedControlID="txtpass2" runat="server" />
+            <asp:TextBox ID="txtpass2" runat="server" CssClass="form-control-custom" TextMode="Password" placeholder="Nhập lại mật khẩu"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtpass2" CssClass="form-error" Display="Dynamic">Vui lòng nhập lại mật khẩu!</asp:RequiredFieldValidator>
+            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtpass" ControlToValidate="txtpass2" CssClass="form-error" Display="Dynamic">Mật khẩu không khớp!</asp:CompareValidator>
+        </div>
+        <div class="mb-3">
+            <asp:Label CssClass="form-label" Text="Số điện thoại" AssociatedControlID="txtSDT" runat="server" />
+            <asp:TextBox ID="txtSDT" runat="server" CssClass="form-control-custom" placeholder="Nhập số điện thoại đã đăng ký"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtSDT" CssClass="form-error" Display="Dynamic">Vui lòng nhập số điện thoại!</asp:RequiredFieldValidator>
+        </div>
+        <div class="mt-4">
+            <asp:Button ID="btnDoi" runat="server" Text="ĐỔI MẬT KHẨU" CssClass="btn-primary" OnClick="btnDoi_Click" />
+        </div>
+        <div class="mt-2">
+            <asp:HyperLink ID="HyperLink1" runat="server" CssClass="form-link" NavigateUrl="~/Dangnhap.aspx">Quay lại đăng nhập</asp:HyperLink>
+        </div>
+        <asp:Label ID="lbloi" runat="server" CssClass="form-error mt-2"></asp:Label>
+        <asp:Label ID="lbthanhcong" runat="server" CssClass="form-success mt-2"></asp:Label>
+    </div>
+</asp:Content>

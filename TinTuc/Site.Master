@@ -1,0 +1,222 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="bantin.Site" %>
+
+<!DOCTYPE html>
+<html lang="vi">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bản Tin - Tin tức Kinh Tế, Thể Thao, Xã Hội</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        :root{
+            --ink:#1a1a1a;
+            --paper:#f2f6fb;
+            --line:#d3deeb;
+            --accent:#a31f1f;
+            --muted:#6b6b6b;
+            --primary:#0e56a8;
+            --primary-dark:#0a3d7a;
+            --primary-darker:#072c59;
+            --font-sans:"Be Vietnam Pro","Segoe UI",Arial,sans-serif;
+            --font-serif:"Noto Serif",Georgia,"Times New Roman",serif;
+        }
+        *{border-radius:0 !important;}
+        html{font-size:15.5px;}
+        body{background:var(--paper);color:var(--ink);font-family:var(--font-sans);font-size:1rem;line-height:1.6;-webkit-font-smoothing:antialiased;}
+        h1,h2,h3,h4,h5,h6,.serif,.masthead h1,.news-title,.section-head,.side-box .side-head{font-family:var(--font-sans);}
+        /* top bar */
+        .topbar{background:var(--primary-darker);color:#fff;font-size:13px;}
+        .topbar a{color:#fff;text-decoration:none;}
+        /* masthead banner */
+        .masthead{background:#fff;border-bottom:3px double var(--primary);padding:0 !important;position:relative;}
+        .banner-wrap{position:relative;display:block;}
+        .banner-wrap img{width:100%;height:clamp(140px,22vw,230px);object-fit:cover;display:block;}
+        .banner-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;background:rgba(7,44,89,.55);color:#fff;text-align:center;padding:1rem;}
+        .banner-overlay h1{font-family:var(--font-sans);font-size:clamp(30px,5vw,50px);font-weight:800;letter-spacing:3px;margin:0;text-shadow:0 2px 8px rgba(0,0,0,.6);}
+        .banner-overlay h1 a{color:#fff;text-decoration:none;}
+        .banner-overlay .slogan{font-family:var(--font-sans);font-size:12px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.7);}
+        .masthead h1{font-family:var(--font-sans);font-size:clamp(32px,5vw,52px);font-weight:800;letter-spacing:2px;margin:0;}
+        .masthead h1 a{color:#fff;text-decoration:none;}
+        .masthead .slogan{font-family:var(--font-sans);color:#fff;font-size:13px;letter-spacing:3px;text-transform:uppercase;}
+        /* nav vuông cổ điển */
+        .mainnav{background:var(--primary) !important;}
+        .mainnav .nav-link{color:#fff !important;font-weight:600;text-transform:uppercase;font-size:14px;letter-spacing:.5px;padding:.8rem 1.1rem !important;border-right:1px solid rgba(255,255,255,.22);}
+        .mainnav .nav-link:hover,.mainnav .nav-link.active{background:var(--primary-darker) !important;color:#fff !important;}
+        .mainnav .navbar-toggler{border:1px solid rgba(255,255,255,.6);color:#fff;}
+        /* search vuông */
+        .search-square .form-control,.search-square .btn{border-radius:0 !important;}
+        .search-square .form-control{border:1px solid #444;background:#fff;}
+        .search-square .btn{background:var(--accent);border:1px solid var(--accent);color:#fff;font-weight:600;}
+        .search-square .btn:hover{background:#7c1616;}
+        /* card vuông */
+        .news-card{background:#fff;border:1px solid var(--line);transition:border-color .2s, box-shadow .2s;}
+        .news-card:hover{border-color:var(--primary);box-shadow:4px 4px 0 var(--primary);}
+        .news-card img{object-fit:cover;width:100%;height:100%;min-height:160px;filter:grayscale(15%);}
+        /* bảng tin 2 cột cho trang danh mục */
+        .cat-table{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:12px;margin:-12px 0 0 -12px;}
+        .cat-table td{vertical-align:top;padding:0;}
+        .cat-table .news-card{height:100%;}
+        @media(max-width:767px){
+            .cat-table,.cat-table tbody,.cat-table tr,.cat-table td{display:block;width:100% !important;}
+            .cat-table{border-spacing:0;margin:0;}
+            .cat-table td{margin-bottom:1rem;}
+        }
+        .news-title{font-family:var(--font-sans);font-size:1.12rem;font-weight:700;line-height:1.45;letter-spacing:-.1px;}
+        .news-title a{color:var(--ink);text-decoration:none;}
+        .news-title a:hover{color:var(--accent);}
+        .news-meta{font-family:var(--font-sans);font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;font-weight:500;}
+        .news-summary{font-family:var(--font-sans);color:#3a3a3a;font-size:.93rem;line-height:1.65;}
+        .section-head{border-bottom:2px solid var(--primary);font-weight:800;text-transform:uppercase;letter-spacing:1px;font-size:1.02rem;padding-bottom:.5rem;margin-bottom:1rem;font-family:var(--font-sans);}
+        .section-head i{color:var(--primary);margin-right:.5rem;}
+        .side-box{background:#fff;border:1px solid var(--line);}
+        .side-box .side-head{background:var(--primary);color:#fff;font-weight:700;text-transform:uppercase;font-size:.9rem;letter-spacing:1px;padding:.6rem .9rem;}
+        .side-box .list-group-item{border:none;border-bottom:1px solid var(--line);padding:.65rem .9rem;}
+        .side-box .list-group-item:last-child{border-bottom:none;}
+        .side-box .list-group-item a{color:var(--ink);text-decoration:none;font-weight:600;font-size:.93rem;}
+        .side-box .list-group-item a:hover{color:var(--accent);}
+        .side-box .list-group-item i{color:var(--accent);font-size:.75rem;}
+        .ad-box{border:1px dashed #999;background:#fff;text-align:center;color:#888;font-size:13px;}
+        .ad-vertical img{border:1px solid var(--line);display:block;}
+        /* === BÀI CHI TIẾT - tối ưu đọc === */
+        .article-wrap{background:#fff;border:1px solid var(--line);max-width:780px;margin:0 auto;}
+        .article-title{font-family:var(--font-sans);font-weight:800;font-size:1.75rem;line-height:1.35;letter-spacing:-.3px;}
+        .article-sapo{font-family:var(--font-sans);font-weight:600;font-size:1.02rem;line-height:1.65;color:#2b2b2b;border-left:4px solid var(--accent);padding-left:.9rem;}
+        .article-meta{font-family:var(--font-sans);}
+        .article-figure{border:1px solid var(--line);padding:6px;background:#fff;}
+        .article-figure img{width:100%;height:auto;display:block;}
+        .article-img{border:1px solid var(--line);padding:6px;background:#fff;}
+        .article-cap{font-family:var(--font-sans);font-size:.85rem;color:var(--muted);font-style:italic;line-height:1.5;}
+        .article-body{font-family:var(--font-serif);font-size:1.09rem;line-height:1.9;color:#242424;white-space:pre-line;word-wrap:break-word;overflow-wrap:break-word;}
+        .article-body::first-letter{font-weight:700;}
+        @media(min-width:768px){
+            .article-title{font-size:2.05rem;}
+            .article-body{text-align:justify;hyphens:auto;}
+        }
+        @media(max-width:767px){
+            .article-body{font-size:1.03rem;line-height:1.8;text-align:left;}
+        }
+        footer{background:var(--primary-darker);color:#c9d9ee;}
+        footer a{color:#fff;text-decoration:none;}
+        footer a:hover{color:#ffd9d9;}
+        .btn-square{border-radius:0 !important;}
+        .btn-classic{background:var(--primary);color:#fff;border:1px solid var(--primary);font-weight:600;text-transform:uppercase;font-size:.85rem;letter-spacing:.5px;}
+        .btn-classic:hover{background:var(--primary-dark);border-color:var(--primary-dark);color:#fff;}
+        @media(max-width:991px){
+            .mainnav .nav-link{border-right:none;border-bottom:1px solid rgba(255,255,255,.22);}
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <%-- ===== TOPBAR: ngày tháng + slogan ===== --%>
+        <div class="topbar py-1">
+            <div class="container d-flex justify-content-between">
+                <span><i class="fa-solid fa-calendar-day me-1"></i><%= DateTime.Now.ToString("dddd, dd/MM/yyyy") %></span>
+                <span class="d-none d-md-inline"><i class="fa-solid fa-newspaper me-1"></i>Tin tức trung thực - Cập nhật liên tục</span>
+            </div>
+        </div>
+
+        <%-- ===== BANNER HEADER: ảnh tin-tuc.jpg + overlay ===== --%>
+        <header class="masthead">
+            <a href="trangchu.aspx" class="banner-wrap">
+                <img src="image/tin-tuc.jpg" alt="Banner Bản Tin" />
+                <span class="banner-overlay">
+                    <span class="slogan">Tin tức trung thực - Cập nhật liên tục</span>
+                    <h1>BẢN TIN</h1>
+                    <span class="slogan">Kinh tế &bull; Thể thao &bull; Xã hội</span>
+                </span>
+            </a>
+        </header>
+
+        <%-- ===== NAVBAR: menu + ô tìm kiếm ===== --%>
+        <nav class="navbar navbar-expand-lg navbar-dark mainnav sticky-top p-0">
+            <div class="container">
+                <a class="navbar-brand d-lg-none fw-bold" href="trangchu.aspx"><i class="fa-solid fa-newspaper me-2"></i>BẢN TIN</a>
+                <button class="navbar-toggler my-2" type="button" data-bs-toggle="collapse" data-bs-target="#mainMenu">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainMenu">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item"><a class="nav-link" href="trangchu.aspx"><i class="fa-solid fa-house me-1"></i>Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="TrangTheThao.aspx"><i class="fa-solid fa-futbol me-1"></i>Thể thao</a></li>
+                        <li class="nav-item"><a class="nav-link" href="TrangXaHoi.aspx"><i class="fa-solid fa-users me-1"></i>Xã hội</a></li>
+                        <li class="nav-item"><a class="nav-link" href="TrangKinhTe.aspx"><i class="fa-solid fa-chart-line me-1"></i>Kinh tế</a></li>
+                        <li class="nav-item"><a class="nav-link" href="timbantin.aspx"><i class="fa-solid fa-magnifying-glass me-1"></i>Tìm tin</a></li>
+                    </ul>
+                    <asp:Panel ID="PanelSearch" runat="server" DefaultButton="btntimkiem" CssClass="d-flex py-2 search-square">
+                        <asp:TextBox ID="txttimkiem" runat="server" CssClass="form-control" placeholder="Nhập tên bản tin..." ToolTip="Nhập tên bản tin"></asp:TextBox>
+                        <asp:Button ID="btntimkiem" runat="server" CssClass="btn ms-1" Text="Tìm" OnClick="btntimkiem_Click" />
+                    </asp:Panel>
+                </div>
+            </div>
+        </nav>
+
+        <%-- ===== MAIN 3 CỘT: menu trái | nội dung | ads.jpg + xem nhiều ===== --%>
+        <main class="container my-4">
+            <div class="row g-4">
+                <div class="col-lg-2 d-none d-lg-block">
+                    <div class="side-box">
+                        <div class="side-head"><i class="fa-solid fa-bars me-2"></i>Chuyên mục</div>
+                        <div class="list-group list-group-flush">
+                            <a href="trangchu.aspx" class="list-group-item list-group-item-action"><i class="fa-solid fa-angle-right me-2"></i>Trang chủ</a>
+                            <a href="TrangTheThao.aspx" class="list-group-item list-group-item-action"><i class="fa-solid fa-angle-right me-2"></i>Thể thao</a>
+                            <a href="TrangXaHoi.aspx" class="list-group-item list-group-item-action"><i class="fa-solid fa-angle-right me-2"></i>Xã hội</a>
+                            <a href="TrangKinhTe.aspx" class="list-group-item list-group-item-action"><i class="fa-solid fa-angle-right me-2"></i>Kinh tế</a>
+                            <a href="timbantin.aspx" class="list-group-item list-group-item-action"><i class="fa-solid fa-angle-right me-2"></i>Tìm theo tên</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-12">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <div class="col-lg-2 col-md-12">
+                    <a href="#" class="d-block mb-3 ad-vertical">
+                        <img src="image/ads.jpg" alt="Quảng cáo" class="img-fluid w-100" />
+                    </a>
+                    <div class="side-box">
+                        <div class="side-head"><i class="fa-solid fa-fire me-2"></i>Xem nhiều</div>
+                        <div class="list-group list-group-flush">
+                            <a href="TrangKinhTe.aspx" class="list-group-item list-group-item-action">Giá vàng lập đỉnh mới</a>
+                            <a href="TrangTheThao.aspx" class="list-group-item list-group-item-action">U23 Việt Nam vào chung kết</a>
+                            <a href="TrangXaHoi.aspx" class="list-group-item list-group-item-action">Cao tốc Bắc - Nam thông xe</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <%-- ===== FOOTER ===== --%>
+        <footer class="pt-4 pb-3 mt-4">
+            <div class="container">
+                <div class="row g-3 text-center text-md-start">
+                    <div class="col-md-4">
+                        <h5 class="text-white serif fw-bold">BẢN TIN</h5>
+                        <p class="small">Trang tin tổng hợp Kinh tế - Thể thao - Xã hội. Giao diện vuông cổ điển, tối giản.</p>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <h6 class="text-white text-uppercase">Liên kết</h6>
+                        <a href="trangchu.aspx" class="d-block small">Trang chủ</a>
+                        <a href="timbantin.aspx" class="d-block small">Tìm kiếm</a>
+                    </div>
+                    <div class="col-md-4 text-center text-md-end">
+                        <h6 class="text-white text-uppercase">Theo dõi</h6>
+                        <a href="#" class="me-3"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="me-3"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="#"><i class="fa-solid fa-rss"></i></a>
+                    </div>
+                </div>
+                <hr style="border-color:#333" />
+                <div class="text-center small">&copy; <%= DateTime.Now.Year %> BẢN TIN - Demo bài tập WebForms</div>
+            </div>
+        </footer>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

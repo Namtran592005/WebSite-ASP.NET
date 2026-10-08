@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WEBBANSACH" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="dbo.TBL_SACH" Member="TBL_SACHes">
+    <Type Name="TBL_SACH">
+      <Column Name="MASACH" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENSACH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="HINHANH" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NGAYNHAP" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="DONGIA" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="MANXB" Type="System.String" DbType="Char(5)" CanBeNull="true" />
+      <Column Name="MATL" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="MOTA" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Association Name="TBL_SACH_TBL_CHITIET_HOADON" Member="TBL_CHITIET_HOADONs" ThisKey="MASACH" OtherKey="MASACH" Type="TBL_CHITIET_HOADON" />
+      <Association Name="TBL_THELOAI_TBL_SACH" Member="TBL_THELOAI" ThisKey="MATL" OtherKey="MATL" Type="TBL_THELOAI" IsForeignKey="true" />
+      <Association Name="TBL_NXB_TBL_SACH" Member="TBL_NXB" ThisKey="MANXB" OtherKey="MANXB" Type="TBL_NXB" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBL_THELOAI" Member="TBL_THELOAIs">
+    <Type Name="TBL_THELOAI">
+      <Column Name="MATL" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENTL" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="TBL_THELOAI_TBL_SACH" Member="TBL_SACHes" ThisKey="MATL" OtherKey="MATL" Type="TBL_SACH" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBL_NXB" Member="TBL_NXBs">
+    <Type Name="TBL_NXB">
+      <Column Name="MANXB" Type="System.String" DbType="Char(5) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENNXB" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="DIACHI" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="DIENTHOAI" Type="System.String" DbType="Char(15)" CanBeNull="true" />
+      <Association Name="TBL_NXB_TBL_SACH" Member="TBL_SACHes" ThisKey="MANXB" OtherKey="MANXB" Type="TBL_SACH" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBL_TAIKHOAN" Member="TBL_TAIKHOANs">
+    <Type Name="TBL_TAIKHOAN">
+      <Column Name="TAIKHOAN" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MATKHAU" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="HOTEN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SDT" Type="System.String" DbType="VarChar(15)" CanBeNull="true" />
+      <Column Name="QUYEN" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBL_HOADON" Member="TBL_HOADONs">
+    <Type Name="TBL_HOADON">
+      <Column Name="MAHD" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TENKHACHHANG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SDT" Type="System.String" DbType="Char(15)" CanBeNull="true" />
+      <Column Name="DIACHIGIAOHANG" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="NGAYDAT" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TINHTRANG" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Association Name="TBL_HOADON_TBL_CHITIET_HOADON" Member="TBL_CHITIET_HOADONs" ThisKey="MAHD" OtherKey="MAHD" Type="TBL_CHITIET_HOADON" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBL_CHITIET_HOADON" Member="TBL_CHITIET_HOADONs">
+    <Type Name="TBL_CHITIET_HOADON">
+      <Column Name="MAHD" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MASACH" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SOLUONG" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DONGIA" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="THANHTIEN" Type="System.Decimal" DbType="Money" CanBeNull="true" IsDbGenerated="true" />
+      <Association Name="TBL_HOADON_TBL_CHITIET_HOADON" Member="TBL_HOADON" ThisKey="MAHD" OtherKey="MAHD" Type="TBL_HOADON" IsForeignKey="true" />
+      <Association Name="TBL_SACH_TBL_CHITIET_HOADON" Member="TBL_SACH" ThisKey="MASACH" OtherKey="MASACH" Type="TBL_SACH" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
