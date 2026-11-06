@@ -175,6 +175,8 @@ WebSite-ASP.NET/
 ├── README.vi.md                    # Vietnamese
 ├── .gitignore
 ├── BanSach/                        # Bookstore (solution bansach.slnx)
+│   ├── README.md                   # English (project readme)
+│   ├── README.vi.md                # Vietnamese (project readme)
 │   ├── Site.Master                 # Master page (layout, navbar, footer)
 │   ├── trangchu.aspx               # Home page
 │   ├── Theloai.aspx                # Books by category
@@ -206,6 +208,8 @@ WebSite-ASP.NET/
 │   ├── dev/                        # database.sql + WEBBANSACH.bak
 │   └── hoadon/                     # TXT invoices written at runtime (not committed)
 └── TinTuc/                         # News portal (solution bantin.slnx)
+    ├── README.md                   # English (project readme)
+    ├── README.vi.md                # Vietnamese (project readme)
     ├── Site.Master                 # News master page
     ├── trangchu.aspx               # Home page
     ├── TrangKinhTe.aspx            # Economy category

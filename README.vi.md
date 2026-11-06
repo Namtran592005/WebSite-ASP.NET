@@ -170,9 +170,12 @@ Các trang quản trị kiểm tra `Session["TAIKHOAN"]`; nếu chưa đăng nh�
 
 ```text
 WebSite-ASP.NET/
-├── README.md
+├── README.md                       # Tiếng Anh (mặc định)
+├── README.vi.md                    # Tiếng Việt
 ├── .gitignore
 ├── BanSach/                        # Website bán sách (solution bansach.slnx)
+│   ├── README.md                   # Tiếng Anh (README dự án)
+│   ├── README.vi.md                # Tiếng Việt (README dự án)
 │   ├── Site.Master                 # Master page (layout, navbar, footer)
 │   ├── trangchu.aspx               # Trang chủ
 │   ├── Theloai.aspx                # Sách theo thể loại
@@ -204,6 +207,8 @@ WebSite-ASP.NET/
 │   ├── dev/                        # database.sql + WEBBANSACH.bak
 │   └── hoadon/                     # File hóa đơn TXT sinh khi in (không commit)
 └── TinTuc/                         # Website tin tức (solution bantin.slnx)
+    ├── README.md                   # Tiếng Anh (README dự án)
+    ├── README.vi.md                # Tiếng Việt (README dự án)
     ├── Site.Master                 # Master page tin tức
     ├── trangchu.aspx               # Trang chủ
     ├── TrangKinhTe.aspx            # Chuyên mục Kinh tế
