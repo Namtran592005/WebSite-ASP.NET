@@ -1,136 +1,139 @@
 <div align="center">
 
-# WebSite ASP.NET
+# Website ASP.NET
 
-**Bộ bài tập ASP.NET Web Forms — Website bán sách & Website tin tức**
+**A set of ASP.NET Web Forms course projects — Online Bookstore & News Portal**
 
-![.NET Framework](https://img.shields.io/badge/.NET%20Framework-4.8.1-512BD4?logo=dotnet&logoColor=white)
-![ASP.NET Web Forms](https://img.shields.io/badge/ASP.NET-Web%20Forms-512BD4?logo=dotnet&logoColor=white)
-![SQL Server](https://img.shields.io/badge/SQL%20Server-LocalDB-CC2927?logo=microsoftsqlserver&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?logo=bootstrap&logoColor=white)
-![License](https://img.shields.io/badge/license-Educational-lightgrey)
+[![.NET Framework](https://img.shields.io/badge/.NET%20Framework-4.8.1-512BD4?logo=dotnet&logoColor=white)](#)
+[![ASP.NET Web Forms](https://img.shields.io/badge/ASP.NET-Web%20Forms-512BD4?logo=dotnet&logoColor=white)](#)
+[![C#](https://img.shields.io/badge/C%23-239120?logo=csharp&logoColor=white)](#)
+[![SQL Server](https://img.shields.io/badge/SQL%20Server-LocalDB-CC2927?logo=microsoftsqlserver&logoColor=white)](#)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?logo=bootstrap&logoColor=white)](#)
+[![License](https://img.shields.io/badge/license-Educational-lightgrey)](#license)
+
+**English** · [Tiếng Việt](README.vi.md)
 
 </div>
 
 ---
 
-## Giới thiệu
+## Overview
 
-Repo gồm **02 website độc lập**, mỗi website là một solution ASP.NET Web Forms riêng (không chia sẻ project), dùng chung stack công nghệ và cùng kết nối SQL Server LocalDB.
+This repository contains **two independent websites**. Each one is its own ASP.NET Web Forms solution (no shared project). They use the same technology stack and each connects to its own SQL Server LocalDB database.
 
-| Thư mục | Solution | Cơ sở dữ liệu | Mô tả |
+| Folder | Solution | Database | Description |
 |:--|:--|:--|:--|
-| [`BanSach/`](BanSach/) | `bansach.slnx` | `WEBBANSACH` | Website bán sách trực tuyến: giỏ hàng, đặt hàng, tra cứu đơn, tài khoản khách hàng, trang quản trị |
-| [`TinTuc/`](TinTuc/) | `bantin.slnx` | `TinTuc` | Website tin tức tổng hợp theo chuyên mục: Kinh tế, Thể thao, Xã hội |
+| [`BanSach/`](BanSach/) | `bansach.slnx` | `WEBBANSACH` | Online bookstore: shopping cart, checkout, order lookup, customer account page, admin panel |
+| [`TinTuc/`](TinTuc/) | `bantin.slnx` | `TinTuc` | News portal with category pages: Economy, Sports, Society |
 
 ---
 
-## Tính năng
+## Features
 
-### 📚 Website bán sách (`BanSach/`)
+### 📚 Bookstore (`BanSach/`)
 
-**Khách hàng**
+**Storefront**
 
-- Xem sách theo thể loại, tìm kiếm theo tên sách
-- Xem chi tiết sách, thêm vào giỏ hàng
-- Giỏ hàng: thay đổi số lượng, xóa sản phẩm
-- Thanh toán, tạo đơn hàng gồm nhiều sản phẩm
-- Tra cứu đơn hàng theo số điện thoại
-- Đăng ký / Đăng nhập / Quên mật khẩu
-- Trang khách hàng: hồ sơ, hạng thành viên, thống kê chi tiêu, lịch sử đơn hàng (lọc theo trạng thái, sắp xếp), hủy đơn chưa xử lý, mua lại đơn cũ, cập nhật thông tin liên hệ
+- Browse books by category, search books by title
+- Book detail page, add to cart
+- Shopping cart: change quantity, remove items
+- Checkout and create an order with multiple line items
+- Look up orders by phone number
+- Register / Log in / Forgot password
+- Customer page: profile, membership tier, spending stats, order history (filter by status, sorting), cancel unprocessed orders, re-order past orders, update contact info
 
-**Quản trị**
+**Administration**
 
-- Quản lý sách: thêm / sửa / xóa, upload ảnh bìa
-- Quản lý thể loại và nhà xuất bản
-- Quản lý đơn hàng: cập nhật trạng thái, in hóa đơn (TXT)
+- Book management: create / edit / delete, cover image upload
+- Category and publisher management
+- Order management: update order status, export invoice to TXT
 
-**Phân quyền:** cột `QUYEN` trong `TBL_TAIKHOAN` (`1` = quản trị, `0` = khách hàng). Tài khoản mẫu: `admin/admin` và `user/user`.
+**Access control:** the `QUYEN` column in `TBL_TAIKHOAN` (`1` = admin, `0` = customer). Seeded accounts: `admin/admin` and `user/user`.
 
-### 📰 Website tin tức (`TinTuc/`)
+### 📰 News Portal (`TinTuc/`)
 
-- Trang chủ: tin mới nhất (sắp xếp theo ngày đăng) + tin liên quan
-- Trang chuyên mục Kinh tế / Thể thao / Xã hội (lưới 2 cột) + tin liên quan
-- Xem chi tiết bản tin: tiêu đề, ngày đăng, ảnh kèm chú thích, tóm tắt, nội dung
-- Tìm kiếm bản tin theo tiêu đề (ô tìm kiếm trên navbar + trang kết quả)
-- Dữ liệu lấy từ bảng `dbo.BanTin`, phân loại qua `MaLinhVuc` (`KT`, `TT`, `XH`)
+- Home page: latest articles (sorted by publish date) plus related articles
+- Category pages for Economy / Sports / Society (two-column grid) plus related articles
+- Article detail page: title, publish date, image with caption, summary, body
+- Search articles by title (navbar search box plus a dedicated results page)
+- Data comes from the `dbo.BanTin` table, categorized by `MaLinhVuc` (`KT`, `TT`, `XH`)
 
 ---
 
-## Công nghệ
+## Tech Stack
 
-| Thành phần | Sử dụng |
+| Layer | Used |
 |:--|:--|
-| Ngôn ngữ | C# |
+| Language | C# |
 | Framework | ASP.NET Web Forms — .NET Framework 4.8.1 |
-| Truy cập dữ liệu | LINQ to SQL (`.dbml`) |
-| CSDL | SQL Server LocalDB `(localdb)\MSSQLLocalDB` |
-| Giao diện | Bootstrap 5, Font Awesome 6.5 |
-| Công cụ | Visual Studio 2022+ (workload **ASP.NET and web development**), IIS Express |
-| Compiler package | `Microsoft.CodeDom.Providers.DotNetCompilerPlatform` 2.0.1 (đã kèm trong `packages/`) |
+| Data access | LINQ to SQL (`.dbml`) |
+| Database | SQL Server LocalDB `(localdb)\MSSQLLocalDB` |
+| UI | Bootstrap 5, Font Awesome 6.5 |
+| Tooling | Visual Studio 2022+ (workload **ASP.NET and web development**), IIS Express |
+| Compiler package | `Microsoft.CodeDom.Providers.DotNetCompilerPlatform` 2.0.1 (bundled in `packages/`) |
 
 ---
 
-## Yêu cầu môi trường
+## Requirements
 
 - **Windows**
-- **Visual Studio 2022** (hoặc mới hơn) với workload *ASP.NET and web development*
+- **Visual Studio 2022** (or newer) with the *ASP.NET and web development* workload
 - **.NET Framework 4.8.1** Developer Pack
-- **SQL Server Express LocalDB** (đi kèm Visual Studio, hoặc cài từ SQL Server Express installer)
-- **sqlcmd** để chạy script CSDL — hoặc dùng SQL Server Management Studio (SSMS) / Azure Data Studio để chạy file `.sql`
+- **SQL Server Express LocalDB** (installs with Visual Studio, or from the SQL Server Express installer)
+- **sqlcmd** to run the database scripts — or SQL Server Management Studio (SSMS) / Azure Data Studio to open and execute the `.sql` files
 
-> Kiểm tra LocalDB đã cài chưa:
+> Check whether LocalDB is installed:
 > ```powershell
 > sqllocaldb info
 > ```
 
 ---
 
-## Cài đặt
+## Getting Started
 
-### 1. Clone repo
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/Namtran592005/WebSite-ASP.NET.git
 cd WebSite-ASP.NET
 ```
 
-### 2. Tạo cơ sở dữ liệu
+### 2. Create the databases
 
-Mỗi website có script riêng trong thư mục `dev/`. Có thể chạy bằng `sqlcmd` (khuyến nghị) hoặc mở file trong SSMS / Azure Data Studio và bấm **Execute**.
+Each website has its own script in its `dev/` folder. Run it with `sqlcmd` (recommended), or open the file in SSMS / Azure Data Studio and press **Execute**.
 
-**Website bán sách**
+**Bookstore**
 
 ```powershell
 sqlcmd -S "(localdb)\MSSQLLocalDB" -i BanSach\dev\database.sql
 ```
 
-Script sẽ tạo database `WEBBANSACH`, các bảng `TBL_NXB`, `TBL_THELOAI`, `TBL_SACH`, `TBL_TAIKHOAN`, `TBL_HOADON`, `TBL_CHITIET_HOADON` và seed dữ liệu mẫu (8 NXB, 4 thể loại, 12 sách, 2 tài khoản).
+This creates the `WEBBANSACH` database and the tables `TBL_NXB`, `TBL_THELOAI`, `TBL_SACH`, `TBL_TAIKHOAN`, `TBL_HOADON`, `TBL_CHITIET_HOADON`, then seeds sample data (8 publishers, 4 categories, 12 books, 2 accounts).
 
-> ⚠️ Script bán sách dùng `CREATE DATABASE` trực tiếp (không có `IF NOT EXISTS`). Nếu đã tồn tại database `WEBBANSACH`, hãy xóa trước hoặc chạy lại sau khi `DROP DATABASE WEBBANSACH;`.
+> ⚠️ The bookstore script calls `CREATE DATABASE` directly (no `IF NOT EXISTS` guard). If `WEBBANSACH` already exists, drop it first or you will get an error.
 
-**Website tin tức**
+**News portal**
 
 ```powershell
 sqlcmd -S "(localdb)\MSSQLLocalDB" -i TinTuc\dev\database.sql
 ```
 
-Script an toàn khi chạy nhiều lần: tạo database `TinTuc` nếu chưa có, tạo bảng `dbo.BanTin` nếu chưa có, sau đó xóa và seed lại dữ liệu mẫu.
+This script is safe to run multiple times: it creates the `TinTuc` database if missing, creates `dbo.BanTin` if missing, then clears and re-seeds the sample data.
 
-> 💡 Nếu có sẵn file backup (`.bak`) trong `BanSach/dev/WEBBANSACH.bak` hoặc `TinTuc/dev/TinTuc.bak`, có thể restore thay vì chạy script.
+> 💡 If a backup file is available (`BanSach/dev/WEBBANSACH.bak` or `TinTuc/dev/TinTuc.bak`), you can restore it instead of running the script.
 
-### 3. Kiểm tra connection string
+### 3. Check the connection strings
 
-**Bán sách** — chuỗi kết nối nằm ở 2 nơi, cần khớp nhau:
+**Bookstore** — the connection string lives in two places and they must match:
 
 - `BanSach/Web.config` → `WEBBANSACHConnectionString` / `WEBBANSACHConnectionString1`
-- `BanSach/DatabaseConfig.cs` → `ConnectionString` (dùng bởi `DatabaseConfig.GetContext()`)
+- `BanSach/DatabaseConfig.cs` → `ConnectionString` (used by `DatabaseConfig.GetContext()`)
 
 ```csharp
 Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WEBBANSACH;Integrated Security=True;
 ```
 
-**Tin tức** — trong `TinTuc/Web.config`:
+**News portal** — in `TinTuc/Web.config`:
 
 ```xml
 <add name="TinTucConnectionString"
@@ -138,142 +141,143 @@ Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=WEBBANSACH;Integrated Securit
      providerName="System.Data.SqlClient" />
 ```
 
-Nếu dùng SQL Server Express / instance khác thay cho LocalDB, sửa `Data Source` tương ứng (ví dụ `.\SQLEXPRESS`).
+If you use SQL Server Express or another instance instead of LocalDB, change `Data Source` accordingly (for example `.\SQLEXPRESS`).
 
-### 4. Mở và chạy
+### 4. Build and run
 
-1. Mở solution tương ứng bằng Visual Studio:
+1. Open the matching solution in Visual Studio:
    - `BanSach/bansach.slnx`
    - `TinTuc/bantin.slnx`
-2. Chuột phải project → **Set as Startup Project**
-3. Nhấn **F5** (IIS Express). Bán sách chạy mặc định tại `http://localhost:58043/`
+2. Right-click the project → **Set as Startup Project**
+3. Press **F5** (IIS Express). The bookstore runs at `http://localhost:58043/` by default
 
-Nếu NuGet báo thiếu package, chạy **Restore NuGet Packages** (project đã có sẵn thư mục `packages/` với `DotNetCompilerPlatform` 2.0.1 nên thường không cần tải thêm).
+If NuGet reports missing packages, run **Restore NuGet Packages**. The `packages/` folder already ships `DotNetCompilerPlatform` 2.0.1, so a restore is usually not required.
 
-### 5. Vào trang quản trị (bán sách)
+### 5. Access the admin panel (bookstore)
 
-Đăng nhập bằng tài khoản quản trị, sau đó truy cập:
+Log in with the admin account, then open:
 
-| Trang | Đường dẫn |
+| Page | Path |
 |:--|:--|
-| Quản lý bán sách | `Quanlybansach.aspx` |
-| Quản lý sách | `Quanlysach.aspx` |
-| Quản lý đơn hàng | `Quanlybanhang.aspx` |
+| Sales dashboard | `Quanlybansach.aspx` |
+| Book management | `Quanlysach.aspx` |
+| Order management | `Quanlybanhang.aspx` |
 
-Các trang quản trị kiểm tra `Session["TAIKHOAN"]`; nếu chưa đăng nhập sẽ bị chuyển về trang đăng nhập.
+Admin pages check `Session["TAIKHOAN"]` and redirect to the login page when the user is not signed in.
 
 ---
 
-## Cấu trúc repo
+## Project Structure
 
 ```text
 WebSite-ASP.NET/
-├── README.md
+├── README.md                       # English (default)
+├── README.vi.md                    # Vietnamese
 ├── .gitignore
-├── BanSach/                        # Website bán sách (solution bansach.slnx)
+├── BanSach/                        # Bookstore (solution bansach.slnx)
 │   ├── Site.Master                 # Master page (layout, navbar, footer)
-│   ├── trangchu.aspx               # Trang chủ
-│   ├── Theloai.aspx                # Sách theo thể loại
-│   ├── chitiet.aspx                # Chi tiết sách
-│   ├── Ketquatimkiem.aspx          # Kết quả tìm kiếm
-│   ├── Giohang.aspx                # Giỏ hàng
-│   ├── Thanhtoan.aspx              # Thanh toán
-│   ├── Camon.aspx                  # Xác nhận đặt hàng
-│   ├── tracuu.aspx                 # Tra cứu đơn hàng theo SĐT
-│   ├── thongtindonhang.aspx        # Hóa đơn / chi tiết đơn (+ in TXT)
-│   ├── khachhang.aspx              # Trang tài khoản khách hàng
+│   ├── trangchu.aspx               # Home page
+│   ├── Theloai.aspx                # Books by category
+│   ├── chitiet.aspx                # Book detail
+│   ├── Ketquatimkiem.aspx          # Search results
+│   ├── Giohang.aspx                # Shopping cart
+│   ├── Thanhtoan.aspx              # Checkout
+│   ├── Camon.aspx                  # Order confirmation
+│   ├── tracuu.aspx                 # Order lookup by phone number
+│   ├── thongtindonhang.aspx        # Invoice / order detail (+ TXT export)
+│   ├── khachhang.aspx              # Customer account page
 │   ├── Dangnhap.aspx / Dangky.aspx / Quenmatkhau.aspx
 │   ├── huongdan.aspx / chinhsachdoitra.aspx
-│   ├── Quanlybansach.aspx          # Dashboard quản trị
-│   ├── Quanlysach.aspx             # Danh sách sách (admin)
-│   ├── editsach.aspx               # Thêm / sửa sách (+ upload ảnh)
-│   ├── edittheloai.aspx            # Thêm / sửa thể loại
-│   ├── editnxb.aspx                # Thêm / sửa nhà xuất bản
-│   ├── Quanlybanhang.aspx          # Quản lý đơn hàng
+│   ├── Quanlybansach.aspx          # Admin dashboard
+│   ├── Quanlysach.aspx             # Book list (admin)
+│   ├── editsach.aspx               # Create / edit book (+ image upload)
+│   ├── edittheloai.aspx            # Create / edit category
+│   ├── editnxb.aspx                # Create / edit publisher
+│   ├── Quanlybanhang.aspx          # Order management
 │   ├── DataClasses.dbml            # LINQ to SQL mapping
 │   ├── DataClasses.designer.cs
 │   ├── DatabaseConfig.cs           # Connection string + GetContext()
-│   ├── CartItem.cs                 # Model item giỏ hàng
+│   ├── CartItem.cs                 # Cart item model
 │   ├── Web.config
 │   ├── bootstrap/                  # Bootstrap 5 (bundle JS + CSS)
 │   ├── fontawesome/                # Font Awesome 6.5
-│   ├── image/                      # Banner, logo, ảnh bìa sách (image/upload)
-│   ├── capmanhinh/                 # Ảnh chụp màn hình
+│   ├── image/                      # Banners, logo, book covers (image/upload)
+│   ├── capmanhinh/                 # Screenshots
 │   ├── dev/                        # database.sql + WEBBANSACH.bak
-│   └── hoadon/                     # File hóa đơn TXT sinh khi in (không commit)
-└── TinTuc/                         # Website tin tức (solution bantin.slnx)
-    ├── Site.Master                 # Master page tin tức
-    ├── trangchu.aspx               # Trang chủ
-    ├── TrangKinhTe.aspx            # Chuyên mục Kinh tế
-    ├── TrangTheThao.aspx           # Chuyên mục Thể thao
-    ├── TrangXaHoi.aspx             # Chuyên mục Xã hội
-    ├── BantinChitiet.aspx          # Chi tiết bản tin
-    ├── timbantin.aspx              # Trang tìm kiếm
-    ├── ketquatimkiem.aspx          # Kết quả tìm kiếm
-    ├── DataClasses.dbml            # LINQ to SQL mapping (bảng BanTin)
+│   └── hoadon/                     # TXT invoices written at runtime (not committed)
+└── TinTuc/                         # News portal (solution bantin.slnx)
+    ├── Site.Master                 # News master page
+    ├── trangchu.aspx               # Home page
+    ├── TrangKinhTe.aspx            # Economy category
+    ├── TrangTheThao.aspx           # Sports category
+    ├── TrangXaHoi.aspx             # Society category
+    ├── BantinChitiet.aspx          # Article detail
+    ├── timbantin.aspx              # Search page
+    ├── ketquatimkiem.aspx          # Search results
+    ├── DataClasses.dbml            # LINQ to SQL mapping (BanTin table)
     ├── Web.config                  # TinTucConnectionString
-    ├── image/                      # Ảnh minh họa bản tin
-    ├── capmanhinh/                 # Ảnh chụp màn hình
+    ├── image/                      # Article images
+    ├── capmanhinh/                 # Screenshots
     └── dev/                        # database.sql + TinTuc.bak
 ```
 
 ---
 
-## Giao diện
+## Screenshots
 
-### Website bán sách
+### Bookstore
 
-| Trang chủ | Giỏ hàng | Thanh toán |
+| Home | Cart | Checkout |
 |:--:|:--:|:--:|
 | ![](BanSach/capmanhinh/trangchu.jpeg) | ![](BanSach/capmanhinh/giohang.jpeg) | ![](BanSach/capmanhinh/thanhtoan.jpeg) |
 
-| Chi tiết sách | Kết quả tìm kiếm | Tra cứu đơn hàng |
+| Book detail | Search results | Order lookup |
 |:--:|:--:|:--:|
 | ![](BanSach/capmanhinh/chitiet.jpeg) | ![](BanSach/capmanhinh/ketquatimkiem.jpeg) | ![](BanSach/capmanhinh/tracuu.jpeg) |
 
-| Đăng nhập | Đăng ký | Quên mật khẩu |
+| Login | Register | Forgot password |
 |:--:|:--:|:--:|
 | ![](BanSach/capmanhinh/dangnhap.jpeg) | ![](BanSach/capmanhinh/dangky.jpeg) | ![](BanSach/capmanhinh/quenmatkhau.jpeg) |
 
-| Thông tin khách hàng | Hóa đơn | Cảm ơn |
+| Customer account | Invoice | Confirmation |
 |:--:|:--:|:--:|
 | ![](BanSach/capmanhinh/khachhang.jpeg) | ![](BanSach/capmanhinh/thongtindonhang.jpeg) | ![](BanSach/capmanhinh/camon.jpeg) |
 
-| Phân loại sách | Hướng dẫn | Chính sách đổi trả |
+| Categories | Guide | Return policy |
 |:--:|:--:|:--:|
 | ![](BanSach/capmanhinh/theloai.jpeg) | ![](BanSach/capmanhinh/huongdan.jpeg) | ![](BanSach/capmanhinh/chinhsachdoitra.jpeg) |
 
-| Admin | Quản lý sách | Quản lý đơn hàng |
+| Admin dashboard | Book management | Order management |
 |:--:|:--:|:--:|
 | ![](BanSach/capmanhinh/quanlybansach.jpeg) | ![](BanSach/capmanhinh/quanlysach.jpeg) | ![](BanSach/capmanhinh/quanlybanhang.jpeg) |
 
-| Thêm sách | Sửa sách | |
+| Add book | Edit book | |
 |:--:|:--:|:--:|
 | ![](BanSach/capmanhinh/editsach-themsach.jpeg) | ![](BanSach/capmanhinh/editsach-suasach.jpeg) | |
 
-### Website tin tức
+### News portal
 
-| Trang chủ | Chuyên mục |
+| Home | Category |
 |:--:|:--:|
 | ![](TinTuc/capmanhinh/trangchu.jpg) | ![](TinTuc/capmanhinh/danhmuc.jpg) |
 
-| Chi tiết bản tin | Kết quả tìm kiếm |
+| Article detail | Search results |
 |:--:|:--:|
 | ![](TinTuc/capmanhinh/chitiet.jpg) | ![](TinTuc/capmanhinh/ketquatimkiem.jpg) |
 
 ---
 
-## Lưu ý khi phát triển
+## Development Notes
 
-- **Mật khẩu lưu dạng plain text** trong `TBL_TAIKHOAN` — phù hợp cho mục đích học tập, không dùng cho production. Nên hash mật khẩu (BCrypt / PBKDF2) trước khi triển khai thực tế.
-- Mật khẩu không được kiểm tra ở trang quản trị ngoài `Session["TAIKHOAN"]` — cần bổ sung kiểm tra `QUYEN` ở mọi trang admin trước khi public.
-- Connection string đăng nhập bằng **Integrated Security** (Windows Authentication), không có tài khoản SQL riêng.
-- `BanSach/Web.config` đặt `enableEventValidation="false"` — chỉ dùng trong môi trường bài tập.
-- Ảnh sách upload vào `image/upload/`, hóa đơn TXT ghi vào thư mục `hoadon/` (thư mục này chưa có sẵn, ứng dụng tự tạo khi in hóa đơn lần đầu và không được commit).
-- Thay đổi schema: sửa `.dbml` trong Visual Studio (LINQ to SQL Designer) và cập nhật lại `dev/database.sql` để đồng bộ.
+- **Passwords are stored in plain text** in `TBL_TAIKHOAN`. This is acceptable for coursework but must not be shipped to production. Hash passwords (BCrypt / PBKDF2) before any real deployment.
+- Admin pages only check `Session["TAIKHOAN"]` and do not verify the `QUYEN` flag. Add a role check on every admin page before exposing the site publicly.
+- Connection strings use **Integrated Security** (Windows Authentication); there is no dedicated SQL login.
+- `BanSach/Web.config` sets `enableEventValidation="false"` — coursework use only.
+- Uploaded book covers go to `image/upload/`; TXT invoices are written to the `hoadon/` folder. That folder is not committed — the app creates it on the first invoice export.
+- To change the schema, edit the `.dbml` in Visual Studio (LINQ to SQL Designer) and update `dev/database.sql` to keep them in sync.
 
 ---
 
-## Giấy phép
+## License
 
-Dự án phục vụ mục đích học tập / bài tập môn học.
+This project is intended for educational / coursework purposes only.
