@@ -9,7 +9,7 @@
 [![C#](https://img.shields.io/badge/C%23-239120?logo=csharp&logoColor=white)](#)
 [![SQL Server](https://img.shields.io/badge/SQL%20Server-LocalDB-CC2927?logo=microsoftsqlserver&logoColor=white)](#)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?logo=bootstrap&logoColor=white)](#)
-[![License](https://img.shields.io/badge/license-Educational-lightgrey)](#license)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 **English** · [Tiếng Việt](README.vi.md)
 
@@ -173,6 +173,7 @@ Admin pages check `Session["TAIKHOAN"]` and redirect to the login page when the 
 WebSite-ASP.NET/
 ├── README.md                       # English (default)
 ├── README.vi.md                    # Vietnamese
+├── LICENSE                         # MIT License
 ├── .gitignore
 ├── BanSach/                        # Bookstore (solution bansach.slnx)
 │   ├── README.md                   # English (project readme)
@@ -284,4 +285,6 @@ WebSite-ASP.NET/
 
 ## License
 
-This project is intended for educational / coursework purposes only.
+This project is licensed under the [MIT License](LICENSE).
+
+Copyright © 2026 [@Namtran592005](https://github.com/Namtran592005).

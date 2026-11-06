@@ -8,7 +8,7 @@
 ![ASP.NET Web Forms](https://img.shields.io/badge/ASP.NET-Web%20Forms-512BD4?logo=dotnet&logoColor=white)
 ![SQL Server](https://img.shields.io/badge/SQL%20Server-LocalDB-CC2927?logo=microsoftsqlserver&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?logo=bootstrap&logoColor=white)
-![License](https://img.shields.io/badge/license-Educational-lightgrey)
+![License](https://img.shields.io/badge/license-MIT-green)
 
 [English](README.md) · **Tiếng Việt**
 
@@ -172,6 +172,7 @@ Các trang quản trị kiểm tra `Session["TAIKHOAN"]`; nếu chưa đăng nh�
 WebSite-ASP.NET/
 ├── README.md                       # Tiếng Anh (mặc định)
 ├── README.vi.md                    # Tiếng Việt
+├── LICENSE                         # MIT License
 ├── .gitignore
 ├── BanSach/                        # Website bán sách (solution bansach.slnx)
 │   ├── README.md                   # Tiếng Anh (README dự án)
@@ -283,4 +284,6 @@ WebSite-ASP.NET/
 
 ## Giấy phép
 
-Dự án phục vụ mục đích học tập / bài tập môn học.
+Dự án được cấp phép theo [MIT License](LICENSE).
+
+Bản quyền © 2026 [@Namtran592005](https://github.com/Namtran592005).
